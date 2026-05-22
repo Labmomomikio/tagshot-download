@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TagShot - APKダウンロード</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Space+Grotesk:wght@400;600;700&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a23;
+    --border: #2a2f3d;
+    --accent: #4f8ef7;
+    --accent2: #7c5cfc;
+    --text: #e8eaf0;
+    --muted: #8892a4;
+    --green: #3dd68c;
+    --warn: #f5a623;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans JP', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+  }
+
+  /* 背景グリッド */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,142,247,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,142,247,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  /* ヘッダー */
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .app-icon {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 40px rgba(79,142,247,0.3);
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* カード */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.2s; }
+  .card:nth-child(4) { animation-delay: 0.3s; }
+
+  .card-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  /* バージョン情報 */
+  .version-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .info-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+
+  .info-item .label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .info-item .value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* バッジ */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(61,214,140,0.12);
+    border: 1px solid rgba(61,214,140,0.3);
+    color: var(--green);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .badge::before { content: '✓'; }
+
+  /* ダウンロードボタン */
+  .dl-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 18px 24px;
+    border-radius: 12px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .dl-btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(79,142,247,0.35);
+  }
+
+  .dl-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(79,142,247,0.5);
+  }
+
+  .dl-btn-primary:active { transform: translateY(0); }
+
+  .dl-btn-secondary {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+
+  .dl-btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn-icon { font-size: 1.3rem; }
+
+  /* 注意事項 */
+  .notice {
+    background: rgba(245,166,35,0.08);
+    border: 1px solid rgba(245,166,35,0.25);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-top: 4px;
+  }
+
+  .notice .notice-title {
+    color: var(--warn);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .notice ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .notice ul li {
+    color: #c8aa6e;
+    font-size: 0.84rem;
+    line-height: 1.7;
+    padding-left: 1.2em;
+    position: relative;
+  }
+
+  .notice ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--warn);
+    font-size: 0.7rem;
+    top: 4px;
+  }
+
+  /* フッター */
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.8;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* アニメーション */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="app-icon">📸</div>
+    <h1>TagShot</h1>
+    <p class="subtitle">
+      Android用アプリ<br>
+      下のボタンからAPKをダウンロードできます
+    </p>
+  </div>
+
+  <!-- 有料版 -->
+  <div class="card">
+    <div class="card-label">有料版 / Full Version</div>
+    <div class="badge">署名付きリリース版</div>
+    <div class="version-grid">
+      <div class="info-item">
+        <div class="label">バージョン</div>
+        <div class="value">v1.1</div>
+      </div>
+      <div class="info-item">
+        <div class="label">対応OS</div>
+        <div class="value">Android 6.0+</div>
+      </div>
+      <div class="info-item">
+        <div class="label">ファイル</div>
+        <div class="value">TagShot_v1_1</div>
+      </div>
+      <div class="info-item">
+        <div class="label">更新日</div>
+        <div class="value">2026-05-20</div>
+      </div>
+    </div>
+    <a class="dl-btn dl-btn-primary" href="TagShot_v1_1_20260520.apk" download>
+      <span class="btn-icon">⬇</span>
+      有料版をダウンロード
+    </a>
+  </div>
+
+  <!-- 無料版 -->
+  <div class="card">
+    <div class="card-label">無料版 / Free Version</div>
+    <div class="badge">署名付きリリース版</div>
+    <div class="version-grid">
+      <div class="info-item">
+        <div class="label">バージョン</div>
+        <div class="value">v1.1</div>
+      </div>
+      <div class="info-item">
+        <div class="label">対応OS</div>
+        <div class="value">Android 6.0+</div>
+      </div>
+      <div class="info-item">
+        <div class="label">ファイル</div>
+        <div class="value">TagShot-Free-v1_1</div>
+      </div>
+      <div class="info-item">
+        <div class="label">更新日</div>
+        <div class="value">2026-05-20</div>
+      </div>
+    </div>
+    <a class="dl-btn dl-btn-primary" href="TagShot-Free-v1_1.apk" download>
+      <span class="btn-icon">⬇</span>
+      無料版をダウンロード
+    </a>
+  </div>
+
+  <!-- インストール手順 -->
+  <div class="card">
+    <div class="card-label">インストール手順</div>
+    <div class="notice">
+      <div class="notice-title">⚠ インストール前に確認してください</div>
+      <ul>
+        <li>Androidの「設定」→「セキュリティ」→「提供元不明のアプリ」を許可してください</li>
+        <li>ダウンロード後、通知バーまたはファイルマネージャーからAPKをタップしてインストール</li>
+        <li>Google Playからのインストールではないため、警告が表示される場合があります</li>
+        <li>このAPKは開発者が署名した正規版です</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <footer>
+    TagShot © 2026<br>
+    ご質問は <a href="https://note.com/">noteの記事</a> のコメント欄へどうぞ
+  </footer>
+
+</div>
+</body>
+</html>
