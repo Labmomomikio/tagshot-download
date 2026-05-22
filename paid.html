@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TagShot 製品版 - APKダウンロード</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Space+Grotesk:wght@400;600;700&display=swap');
+  :root{--bg:#0d0f14;--surface:#161a23;--border:#2a2f3d;--accent:#f5a623;--text:#e8eaf0;--muted:#8892a4;--warn:#f5a623;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px 60px;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(245,166,35,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,166,35,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+  .container{position:relative;z-index:1;max-width:560px;width:100%;}
+  .header{text-align:center;margin-bottom:36px;animation:fadeUp 0.6s ease both;}
+  .app-icon{width:80px;height:80px;background:linear-gradient(135deg,#f5a623,#e8822a);border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 20px;box-shadow:0 0 40px rgba(245,166,35,0.35);}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:6px;}
+  .tag{display:inline-block;background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.4);color:var(--accent);border-radius:20px;padding:4px 14px;font-size:0.82rem;font-weight:700;margin-bottom:10px;}
+  .subtitle{color:var(--muted);font-size:0.92rem;line-height:1.7;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:14px;animation:fadeUp 0.6s ease both;}
+  .card:nth-child(2){animation-delay:0.1s;}.card:nth-child(3){animation-delay:0.2s;}
+  .card-label{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .version-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+  .info-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:10px 14px;}
+  .info-item .label{font-size:0.7rem;color:var(--muted);margin-bottom:3px;}
+  .info-item .value{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:600;}
+  .dl-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px 24px;border-radius:12px;font-family:'Noto Sans JP',sans-serif;font-size:1.05rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;transition:all 0.2s ease;}
+  .dl-btn-paid{background:linear-gradient(135deg,#f5a623,#e8822a);color:#fff;box-shadow:0 4px 20px rgba(245,166,35,0.35);}
+  .dl-btn-paid:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,166,35,0.5);}
+  .features{list-style:none;margin-bottom:20px;}
+  .features li{padding:8px 0;border-bottom:1px solid var(--border);font-size:0.9rem;display:flex;align-items:center;gap:10px;}
+  .features li:last-child{border-bottom:none;}
+  .features li .icon{color:var(--accent);}
+  .notice{background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.25);border-radius:12px;padding:16px 20px;}
+  .notice .notice-title{color:var(--warn);font-size:0.82rem;font-weight:700;margin-bottom:8px;}
+  .notice ul{list-style:none;}
+  .notice ul li{color:#c8aa6e;font-size:0.83rem;line-height:1.8;padding-left:1.2em;position:relative;}
+  .notice ul li::before{content:'▸';position:absolute;left:0;color:var(--warn);font-size:0.7rem;top:4px;}
+  footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.78rem;line-height:1.8;animation:fadeUp 0.6s 0.3s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="app-icon">📸</div>
+    <h1>TagShot</h1>
+    <div class="tag">🔴 製品版 / Full Version</div>
+    <p class="subtitle">透かしなし・広告なしで快適に利用可能<br>ご購入ありがとうございます</p>
+  </div>
+  <div class="card">
+    <div class="card-label">製品版の特徴</div>
+    <ul class="features">
+      <li><span class="icon">✓</span> 透かしなし</li>
+      <li><span class="icon">✓</span> 広告なし</li>
+      <li><span class="icon">✓</span> 全機能使用可能</li>
+      <li><span class="icon">✓</span> 開発継続をサポート</li>
+    </ul>
+    <div class="card-label">ダウンロード情報</div>
+    <div class="version-grid">
+      <div class="info-item"><div class="label">バージョン</div><div class="value">v1.1</div></div>
+      <div class="info-item"><div class="label">対応OS</div><div class="value">Android 6.0+</div></div>
+      <div class="info-item"><div class="label">種類</div><div class="value">製品版</div></div>
+      <div class="info-item"><div class="label">更新日</div><div class="value">2026-05-20</div></div>
+    </div>
+    <a class="dl-btn dl-btn-paid" href="https://github.com/Labmomomikio/tagshot-download/releases/download/v1.1/TagShot_v1_1_20260520.zip">⬇ 製品版をダウンロード（ZIP）</a>
+  </div>
+  <div class="card">
+    <div class="notice">
+      <div class="notice-title">⚠ インストール手順</div>
+      <ul>
+        <li>ZIPをダウンロード後、解凍してAPKファイルを取り出す</li>
+        <li>「設定」→「セキュリティ」→「提供元不明のアプリ」を許可</li>
+        <li>APKをタップしてインストール</li>
+        <li>Play Protect の警告が出たら「インストール」を選ぶ</li>
+      </ul>
+    </div>
+  </div>
+  <footer>TagShot © 2026 Labmomomikio<br>ご購入ありがとうございます</footer>
+</div>
+</body>
+</html>
